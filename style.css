@@ -1,0 +1,335 @@
+@font-face {
+  font-family: bebas;
+  src: url(./fonts/bebas_neue/BebasNeue-Regular.ttf);
+}
+
+@font-face {
+  font-family: ubuntu;
+  src: url(./fonts/ubuntu_title/Ubuntu-Title.ttf);
+}
+
+@font-face {
+  font-family: dos;
+  src: url(./fonts/perfect_dos_vga_437/Perfect\ DOS\ VGA\ 437.ttf);
+}
+
+/* ------------------------ BEGIN DESKTOP ------------------------ */
+@media screen and (min-width: 1024px) {
+  .col-12.big {
+    font-size: 10vh;
+  }
+
+  #incoming {
+    /* background-color: transparent; */
+    font-size: 3vh;
+    width: 35vw;
+    height: 0vh;
+    color: gray;
+    font-family: dos;
+    margin-top: 0vh;
+    margin-bottom: 0vh;
+  }
+
+  .blank-8 {
+    margin-bottom: -40vh;
+  }
+
+  .blank-7 {
+    margin-bottom: -40vh;
+  }
+
+  .blank-12 {
+    margin-bottom: -80vh;
+  }
+
+  .big {
+    /* background-color: transparent; */
+    border: 1px solid red;
+    /* color: aqua; */
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: inherit;
+    font-size: 3.25vw;
+    font-weight: bolder;
+    /* font-style: italic; */
+    text-align: right;
+    padding-right: 0.77em;
+    padding-left: 12em;
+    line-height: 85%;
+  }
+
+  .col-12.big {
+    /* background-color: transparent; */
+    color: aqua;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: inherit;
+    font-size: 7vw;
+    font-weight: bolder;
+    font-style: italic;
+    text-align: right;
+    padding-right: 1vw;
+    padding-left: 0vw;
+    line-height: 4vh;
+  }
+
+  .miniweb {
+    background-color: black;
+    color: whitesmoke;
+    margin-top: 10vh;
+    margin-bottom: 0vh;
+    height: 100%;
+  }
+
+  [class*="col-"] {
+    float: left;
+    padding: 12px;
+    border: 1px solid red;
+    /* background-color: transparent; */
+    width: 1vh;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  [class*="blank-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+    float: none;
+    /* height: 0%; */
+  }
+}
+/* ------------------------ END DESKTOP ------------------------ */
+
+
+
+
+
+/* ------------------------ BEGIN TABLET ------------------------ */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .col-12.big {
+    font-size: 10vh;
+  }
+
+  #incoming {
+    /* background-color: transparent; */
+    font-size: 2vh;
+    width: 35vw;
+    height: 1vh;
+    color: gray;
+    font-family: dos;
+    margin-top: 0%;
+    margin-bottom: 0vh;
+  }
+
+  .blank-8 {
+    margin-bottom: 40vh;
+  }
+
+  .blank-7 {
+    margin-bottom: 0vh;
+  }
+
+  .blank-12 {
+    margin-bottom: 30vh;
+  }
+
+  .big {
+    /* background-color: transparent; */
+    border: 1px solid red;
+    /* color: aqua; */
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: inherit;
+    font-size: 3vh;
+    font-weight: bolder;
+    /* font-style: italic; */
+    text-align: right;
+    padding-right: 0.77em;
+    padding-left: 2.3em;
+    line-height: 85%;
+    line-break: 10%;
+    line-gap-override: true;
+  }
+
+  .col-12.big {
+    /* background-color: transparent; */
+    color: aqua;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: inherit;
+    font-size: 7vw;
+    font-weight: bolder;
+    font-style: italic;
+    text-align: right;
+    padding-right: 1vw;
+    padding-left: 0vw;
+    line-height: 4vh;
+  }
+
+  .miniweb {
+    background-color: black;
+    color: whitesmoke;
+    margin-top: 80vh;
+    height: 100%;
+  }
+
+  [class*="col-"] {
+    float: left;
+    padding: 12px;
+    border: 1px solid red;
+    /* background-color: transparent; */
+    width: 1vh;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  [class*="blank-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+    float: none;
+    height: 0%;
+  }
+}
+/* ------------------------ END TABLET ------------------------ */
+
+
+
+
+/* ------------------------ BEGIN SMARTPHONE ------------------------ */
+@media screen and (max-width: 767px) {
+  .col-12.big {
+    font-size: 10vh;
+  }
+
+  #incoming {
+    /* background-color: transparent; */
+    font-size: 2vh;
+    width: 35vw;
+    height: 1vh;
+    color: gray;
+    font-family: dos;
+    margin-top: 0%;
+    margin-bottom: 0vh;
+  }
+
+  .blank-8 {
+    margin-bottom: 50vh;
+  }
+
+  .blank-7 {
+    margin-bottom: 0vh;
+  }
+
+  .blank-12 {
+    margin-bottom: 30vh;
+  }
+
+  .big {
+    /* background-color: transparent; */
+    border: 1px solid red;
+    /* color: aqua; */
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: inherit;
+    font-size: 3vh;
+    font-weight: bolder;
+    /* font-style: italic; */
+    text-align: right;
+    padding-right: 0.77em;
+    padding-left: 2.3em;
+    line-height: 85%;
+    line-break: 10%;
+    line-gap-override: true;
+  }
+
+  .col-12.big {
+    /* background-color: transparent; */
+    color: aqua;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    font-family: inherit;
+    font-size: 7vw;
+    font-weight: bolder;
+    font-style: italic;
+    text-align: right;
+    padding-right: 1vw;
+    padding-left: 0vw;
+    line-height: 4vh;
+  }
+
+  .miniweb {
+    background-color: black;
+    color: whitesmoke;
+    margin-top: 80vh;
+    height: 100%;
+  }
+
+  [class*="col-"] {
+    float: left;
+    padding: 12px;
+    border: 1px solid red;
+    /* background-color: transparent; */
+    width: 1vh;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  [class*="blank-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+    float: none;
+    height: 0%;
+  }
+}
+/* ------------------------ END SMARTPHONE ------------------------ */
+
+
+* { box-sizing: border-box; }
+
+p {
+  margin-top: 0em;
+  margin-bottom: 0.4em;
+}
+
+#app {
+  font-family: bebas;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center;
+  color: #2c3e50;
+  margin-top: 60px; */
+}
+
+#blackbg {
+  /* background-color: transparent; */
+  height: 60%;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+.blank-1 {margin-top: 8.33%;}
+.blank-2 {margin-top: 16.66%;}
+.blank-3 {margin-top: 25%;}
+.blank-4 {margin-top: 33.33%;}
+.blank-5 {margin-top: 41.66%;}
+.blank-6 {margin-top: 50%;}
+.blank-7 {margin-top: 58.33%;}
+.blank-8 {margin-top: 66.66%;}
+.blank-9 {margin-top: 75%;}
+.blank-10 {margin-top: 83.33%;}
+.blank-11 {margin-top: 91.66%;}
+.blank-12 {margin-top: 100%;}
