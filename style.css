@@ -1,3 +1,18 @@
+* { box-sizing: border-box; }
+
+p {
+  margin-top: 0em;
+  margin-bottom: 0.4em;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
 @font-face {
   font-family: bebas;
   src: url(./fonts/bebas_neue/BebasNeue-Regular.ttf);
@@ -28,6 +43,7 @@
     font-family: dos;
     margin-top: 0vh;
     margin-bottom: 0vh;
+    z-index: 99;
   }
 
   .blank-8 {
@@ -56,6 +72,7 @@
     padding-right: 0.77em;
     padding-left: 12em;
     line-height: 85%;
+    z-index: 99;
   }
 
   .col-12.big {
@@ -71,14 +88,16 @@
     padding-right: 1vw;
     padding-left: 0vw;
     line-height: 4vh;
+    z-index: 99;
   }
 
   .miniweb {
-    background-color: black;
+    /* background-color: black; */
     color: whitesmoke;
     margin-top: 10vh;
     margin-bottom: 0vh;
     height: 100%;
+    z-index: 99;
   }
 
   [class*="col-"] {
@@ -89,6 +108,7 @@
     width: 1vh;
     margin-top: auto;
     margin-bottom: auto;
+    z-index: 99;
   }
 
   [class*="blank-"] {
@@ -109,6 +129,7 @@
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .col-12.big {
     font-size: 10vh;
+    z-index: 99;
   }
 
   #incoming {
@@ -120,6 +141,7 @@
     font-family: dos;
     margin-top: 0%;
     margin-bottom: 0vh;
+    z-index: 99;
   }
 
   .blank-8 {
@@ -148,8 +170,7 @@
     padding-right: 0.77em;
     padding-left: 2.3em;
     line-height: 85%;
-    line-break: 10%;
-    line-gap-override: true;
+    z-index: 99;
   }
 
   .col-12.big {
@@ -165,13 +186,15 @@
     padding-right: 1vw;
     padding-left: 0vw;
     line-height: 4vh;
+    z-index: 99;
   }
 
   .miniweb {
-    background-color: black;
+    /* background-color: black; */
     color: whitesmoke;
     margin-top: 80vh;
     height: 100%;
+    z-index: 99;
   }
 
   [class*="col-"] {
@@ -182,6 +205,7 @@
     width: 1vh;
     margin-top: auto;
     margin-bottom: auto;
+    z-index: 99;
   }
 
   [class*="blank-"] {
@@ -190,6 +214,7 @@
     border: 1px solid red;
     float: none;
     height: 0%;
+    z-index: 99;
   }
 }
 /* ------------------------ END TABLET ------------------------ */
@@ -201,6 +226,7 @@
 @media screen and (max-width: 767px) {
   .col-12.big {
     font-size: 10vh;
+    z-index: 99;
   }
 
   #incoming {
@@ -212,6 +238,7 @@
     font-family: dos;
     margin-top: 0%;
     margin-bottom: 0vh;
+    z-index: 99;
   }
 
   .blank-8 {
@@ -240,8 +267,7 @@
     padding-right: 0.77em;
     padding-left: 2.3em;
     line-height: 85%;
-    line-break: 10%;
-    line-gap-override: true;
+    z-index: 99;
   }
 
   .col-12.big {
@@ -257,13 +283,15 @@
     padding-right: 1vw;
     padding-left: 0vw;
     line-height: 4vh;
+    z-index: 99;
   }
 
   .miniweb {
-    background-color: black;
+    /* background-color: black; */
     color: whitesmoke;
     margin-top: 80vh;
     height: 100%;
+    z-index: 99;
   }
 
   [class*="col-"] {
@@ -286,13 +314,6 @@
 }
 /* ------------------------ END SMARTPHONE ------------------------ */
 
-
-* { box-sizing: border-box; }
-
-p {
-  margin-top: 0em;
-  margin-bottom: 0.4em;
-}
 
 #app {
   font-family: bebas;

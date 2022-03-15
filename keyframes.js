@@ -3,8 +3,9 @@
 import './style.css'
 import * as TWEEN from '@tweenjs/tween.js'
 
-export function detectDivs ( window_height ) {
+export function detectDivs() {
     var e;
+    const window_height = window.innerHeight;
     const introWP = new Waypoint ({
         element: document.getElementById ( 'intro' ),
         handler: ( direction ) => {

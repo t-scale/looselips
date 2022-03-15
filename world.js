@@ -6,15 +6,17 @@ import * as THREE from 'three'
 import { Quaternion } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
-class World {
-    constructor() {
+export class World {
 
-        const logoURL = './models/logo.glb';
-        const max_speed = { x: -0.025, y: 0.025 };
-        const max_rotation = Math.PI / 2;
+    constructor () {
 
-        let r = 0, g = 0, b = 0;
-        let rgb = 0;
+        this.logoURL = './models/logo.glb';
+
+        this.max_speed = { x: -0.025, y: 0.025 };
+        this.max_rotation = Math.PI / 2;
+
+        this.r = 0, this.g = 0, this.b = 0;
+        this.rgb = 0;
 
         this.colours = { 
             black: 0x000000,
@@ -25,26 +27,32 @@ class World {
             purple: 0x2200ff
         };
 
-        const logo = new THREE.Object3D();
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera (
-            viewAngle, 
-            screenWidth / screenHeight,
-            nearDistance,
-            farDistance
+        this.screenWidth = window.innerWidth;
+        this.screenHeight = window.innerHeight;
+        this.viewAngle = 89;
+        this.nearDistance = 0.1;
+        this.farDistance = 1000;
+
+        this.logo = new THREE.Object3D();
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera (
+            this.viewAngle, 
+            this.screenWidth / this.screenHeight,
+            this.nearDistance,
+            this.farDistance
         );
 
-        const renderer = new THREE.WebGLRenderer ({
+        this.renderer = new THREE.WebGLRenderer ({
             antialias:true
         });
 
-        const light = new THREE.AmbientLight( colours.white, 0.5 );
-        const dirLight = new THREE.PointLight(colours.orange, 1);
-        const loader = new GLTFLoader();
-        const color1 = new THREE.Color();
-
+        this.light = new THREE.AmbientLight( this.colours.white, 0.5 );
+        this.dirLight = new THREE.PointLight(this.colours.orange, 1);
+        this.loader = new GLTFLoader();
+        this.color1 = new THREE.Color();
+        
         // 3D KEYFRAMES
-        const rotation_set = {
+        this.rotation_set = {
             init: new THREE.Quaternion ( 0, 0, 0, 0 ),
             first: new THREE.Quaternion ( 0.1, 0.2, 0.3, 0.4 ),
             second: new THREE.Quaternion ( 0.7, 0.8, 0.9, 0.3 ),
@@ -54,12 +62,44 @@ class World {
         }
 
         // quaternion containers
-        let q = new Quaternion (0, 0, 0, 0);
-        let q_temp = new Quaternion (0, 0, 0, 0);
+        this.q = new Quaternion (0, 0, 0, 0);
+        this.q_temp = new Quaternion (0, 0, 0, 0);
     }
 
-    async init() {
+    init() {
+        
+        // SCENE
+        this.scene.background = new THREE.Color (this.colours.dark);
+
+        // CAMERA
+        this.camera.position.set ( 0, 0, 1 );
+
+        // WEBGL RENDERER
+        this.renderer.setPixelRatio ( window.devicePixelRatio );
+        this.renderer.setSize ( this.screenWidth, this.screenHeight );
+        this.renderer.render ( this.scene, this.camera );
+        document.body.appendChild ( this.renderer.domElement );
+
+        // LIGHT
+        this.scene.add (this.light);
+        this.dirLight.position.set (0,1,0);
+        this.dirLight.castShadow = false;
+        this.scene.add ( this.dirLight );
+
+        // LOAD MODEL
+        this.loader.load (
+            this.logoURL,
+            ( glb ) => {
+                console.log ('glb:', glb);
+                this.logo.add ( glb.scene );
+                this.scene.add ( this.logo );
+                this.logo.traverse ( ( child ) => {
+                    if ( child instanceof THREE.Mesh ) {
+                        this.color1.setHex (this.colours.orange);
+                        console.log (this.logo);
+                    }
+                });
+            }
+        );
     }
 }
-
-export { World }
