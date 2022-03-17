@@ -1,6 +1,6 @@
 'use strict'
 
-import './style.css'
+import '../css/style.css'
 import './WebGL.js'
 import * as THREE from 'three'
 import { Quaternion } from 'three'

@@ -1,4 +1,6 @@
-import './style.css'
+'use strict'
+
+import '../css/style.css'
 import './world.js'
 import './keyframes.js'
 import './user.js'

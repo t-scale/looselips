@@ -1,6 +1,6 @@
 'use strict'
 
-import './style.css'
+import '../css/style.css'
 import * as TWEEN from '@tweenjs/tween.js'
 import { World } from './world';
 
