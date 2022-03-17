@@ -47,7 +47,7 @@ canvas {
   }
 
   .blank-8 {
-    margin-bottom: -40vh;
+    margin-bottom: -50vh;
   }
 
   .blank-7 {
@@ -91,7 +91,7 @@ canvas {
     z-index: 99;
   }
 
-  .miniweb {
+  #miniweb {
     /* background-color: black; */
     color: whitesmoke;
     margin-top: 10vh;

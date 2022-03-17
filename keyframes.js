@@ -2,37 +2,46 @@
 
 import './style.css'
 import * as TWEEN from '@tweenjs/tween.js'
+import { World } from './world';
 
-export function detectDivs() {
-    var e;
+function detectDiv ( el, obj3d ) {;
     const window_height = window.innerHeight;
-    const introWP = new Waypoint ({
-        element: document.getElementById ( 'intro' ),
+    const wp = new Waypoint ({
+        element: document.getElementById ( el ),
         handler: ( direction ) => {
-            e = document.getElementById ( 'intro' );
-            console.log ( e );
-            return e;
+            var dir = direction;
+            trigger.apply ( this, [el, dir, obj3d] );
         },
         offset: window_height - 10
     });
+}
 
-    const textWP = new Waypoint ({
-        element: document.getElementById ( 'text' ),
-        handler: ( direction ) => {
-            e = document.getElementById ( 'text' );
-            console.log ( e );
-            return e;
-        },
-        offset: window_height - 10
-    });
+function trigger( e, d, o ) {
+    if ( o instanceof World ) {
+        if ( e == 'intro' ) {
+            if ( d == 'up' ) {
+                o.q.slerpQuaternions ( o.rotation_set.twist1, o.rotation_set.init, 1 );
+            } else {
+                o.q.slerpQuaternions ( o.rotation_set.init, o.rotation_set.twist1, 1 );
+            }
+        } else if ( e == 'text' ) {
+            if ( d == 'up' ) {
+                o.q.slerpQuaternions ( o.rotation_set.twist2, o.rotation_set.twist1, 1 );
+            } else {
+                o.q.slerpQuaternions ( o.rotation_set.twist1, o.rotation_set.twist2, 1 );
+            }
+        } else if ( e == 'miniweb' ) {
+            if ( d == 'up' ) {
+                o.q.slerpQuaternions ( o.rotation_set.bottom, o.rotation_set.twist2, 1 );
+            } else {
+                o.q.slerpQuaternions ( o.rotation_set.twist2, o.rotation_set.bottom, 1 );
+            }
+        }
+    }
+}
 
-    const bottomWP = new Waypoint ({
-        element: document.getElementById ( 'bottom' ),
-        handler: ( direction ) => {
-            e = document.getElementById ( 'bottom' );
-            console.log ( e );
-            return e;
-        },
-        offset: window_height - 10
-    });
+export function init ( string_array, object_3d ) {
+    for (var i = 0; i < string_array.length; i++) {
+        detectDiv.apply ( this, [string_array[i], object_3d] );
+      }
 }

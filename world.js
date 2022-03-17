@@ -8,7 +8,16 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 export class World {
 
-    constructor () {
+    constructor ( container ) {
+
+        this.mouse = { x: 0, y: 0 };
+        document.addEventListener ( 'mousemove', ( event ) => {
+            event.preventDefault();
+            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+        } );
+
+        this.rotate = { x: 0, y:0 };
 
         this.logoURL = './models/logo.glb';
 
@@ -86,6 +95,7 @@ export class World {
         this.dirLight.castShadow = false;
         this.scene.add ( this.dirLight );
 
+
         // LOAD MODEL
         this.loader.load (
             this.logoURL,
@@ -96,10 +106,21 @@ export class World {
                 this.logo.traverse ( ( child ) => {
                     if ( child instanceof THREE.Mesh ) {
                         this.color1.setHex (this.colours.orange);
-                        console.log (this.logo);
                     }
                 });
             }
         );
+
+        this.loop();
+    }
+
+    loop () {
+        this.camera.updateMatrixWorld();
+        this.logo.rotation.x -= this.mouse.y;
+        this.logo.rotation.y += this.mouse.x;
+        this.renderer.render ( this.scene, this.camera );
+        this.logo.setRotationFromQuaternion ( this.q );
+        
+        requestAnimationFrame ( () => this.loop() );
     }
 }
