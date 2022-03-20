@@ -215,8 +215,8 @@ export class World {
                                         tween.start();
                                         setTimeout ( timeout, time );
                                     }
+                                    if ( d == 'up' ) { tween.resume() }
                                 }
-                                if ( d == 'up' ) { tween.resume() }
                             }
                         }, offset: this.window_height - 10
                     });
@@ -262,10 +262,6 @@ export class World {
 
         this.logo.position.x = this.tw_init_vectors[2].y;
         this.logo.position.y = this.tw_init_vectors[2].x;
-
-        // this.r = 1 - this.scroll * 12 + 0.25;
-        // this.g = ( this.scroll * 12 + 0.25 ) / 2;
-        // this.b = 0.5 + ( this.scroll * 12 + 0.25 ) / 2;
 
         this.logo.traverse ( ( child ) => {
             if (child instanceof THREE.Mesh) {
