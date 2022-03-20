@@ -16,30 +16,72 @@ export class World {
         /* ---------------------- ROTATION ---------------------- */
         this.tw_time_rotation = 500;
         this.tw_easing_rotation = TWEEN.Easing.Exponential.Out;
-        this.tw_rotation = new Vector3 (0, 0, 0);
+        this.tw_rotation = new Vector3 ( 0, 0, 0 );
         this.tw_rotation_array = [
-            new Vector3 ( -0.7, 0.5, 0.1 ),
-            new Vector3 ( 0.6, -0.8, 0.4 ),
-            new Vector3 ( 0.5, 0.2, 0.9 )
+            new Vector3 ( 0.7, 0.5, 0.1 ),
+            new Vector3 ( -0.6, 0.8, -0.4 ),
+            new Vector3 ( 0.5, 0, 0 )
         ];
 
         /* ---------------------- SHAPE ---------------------- */
-        this.tw_time_shape = 250;
+        this.tw_time_shape = 333;
         this.tw_easing_shape = TWEEN.Easing.Quadratic.InOut;
-        this.tw_shape = new Vector3 (1, 1, 1);
+        this.tw_shape = new Vector3 ( 1, 1, 1 );
         this.tw_shape_array = [
-            new Vector3 ( 1.4, 1.1, 4 ),
-            new Vector3 ( 2, 2, 4 ),
-            new Vector3 ( 0.25, 0.25, 0.25 )
+            new Vector3 ( 1.4, 1.1, 8 ),
+            new Vector3 ( -1, -1, 32 ),
+            new Vector3 ( 0.125, 0.125, 0.125 )
         ];
 
-        /* ---------------------- TWEEN ARRAYS ---------------------- */
-        this.tw_init_vectors = [ this.tw_rotation, this.tw_shape ];
-        this.tw_arrays = [ this.tw_rotation_array, this.tw_shape_array ];
-        this.tw_easings = [ this.tw_easing_rotation, this.tw_easing_shape ];
-        this.tw_times = [ this.tw_time_rotation, this.tw_time_shape ];
+        /* ---------------------- POSITION ---------------------- */
+        this.tw_time_pos = 250;
+        this.tw_easing_pos = TWEEN.Easing.Sinusoidal.InOut;
+        this.tw_pos = new Vector3 ( 0, 0 );
+        this.tw_pos_array = [
+            new Vector3 ( 0.43, -0.63 ),
+            new Vector3 ( 0.65, 0.5 ),
+            new Vector3 ( -0.85, -1.6 )
+        ];
 
-        this.tweens = [[],[]];
+         /* ---------------------- COLOUR (LOGO) ---------------------- */
+         this.tw_time_colour = 125;
+         this.tw_easing_colour = TWEEN.Easing.Elastic.InOut;
+         this.tw_colour = new Vector3 ( 0.2, 0.2, 0.2 );
+         this.tw_colour_array = [
+             new Vector3 ( -2, 2, 1.25 ),
+             new Vector3 (  -2, 2, 1.25 ),
+             new Vector3 ( 0.2, 0.2, 0.2 )
+         ];
+
+        /* ---------------------- TWEEN ARRAYS ---------------------- */
+        this.tw_init_vectors = [ 
+            this.tw_rotation,
+            this.tw_shape,
+            this.tw_pos,
+            this.tw_colour
+        ];
+        this.tw_arrays = [
+            this.tw_rotation_array,
+            this.tw_shape_array,
+            this.tw_pos_array,
+            this.tw_colour_array
+        ];
+        this.tw_easings = [
+            this.tw_easing_rotation,
+            this.tw_easing_shape,
+            this.tw_easing_pos,
+            this.tw_easing_colour
+        ];
+        this.tw_times = [ 
+            this.tw_time_rotation,
+            this.tw_time_shape,
+            this.tw_time_pos,
+            this.tw_time_colour
+        ];
+
+        this.tweens = [
+            [],[],[],[]
+        ];
 
         this.window_height = window.innerHeight;
         this.div = [
@@ -56,7 +98,6 @@ export class World {
 
         this.speed = { x: 0, y: 0 };
         this.depth = { x: 1, y: 1, z: 1 };
-
         this.rotate = { x: 0, y:0 };
 
         this.logoURL = './models/logo.glb';
@@ -64,7 +105,7 @@ export class World {
         this.max_speed = { x: -0.025, y: 0.025 };
         this.max_rotation = Math.PI / 2;
 
-        this.r = 0, this.g = 0, this.b = 0;
+        // this.r = 0, this.g = 0, this.b = 0;
         this.rgb = 0;
 
         this.colours = { 
@@ -193,19 +234,9 @@ export class World {
     onScroll() {
         window.onscroll = ( event ) => {
             this.scroll = window.scrollY / document.body.scrollHeight;
-    
             this.rgb = ( ( this.scroll * 12 ) % 0.66 ) + 0.25;
-            this.r = 1 - this.scroll * 12 + 0.25;
-            this.g = ( this.scroll * 12 + 0.25 ) / 2;
-            this.b = 0.5 + ( this.scroll * 12 + 0.25 ) / 2;
-    
             this.scene.background.setRGB (this.rgb, this.rgb, this.rgb);
             this.color1.setRGB ( this.r, this.g, this.b );
-            this.logo.traverse ( ( child ) => {
-                if (child instanceof THREE.Mesh) {
-                    child.material.color.setRGB ( this.r, this.g, this.b );
-                }
-            });
         }
     }
 
@@ -222,10 +253,28 @@ export class World {
     update() {
         this.logo.rotation.x = this.tw_init_vectors[0].y;
         this.logo.rotation.y = this.tw_init_vectors[0].x;
+
         this.logo.scale.set ( 
             this.tw_init_vectors[1].x, 
             this.tw_init_vectors[1].y, 
             this.tw_init_vectors[1].z 
         );
+
+        this.logo.position.x = this.tw_init_vectors[2].y;
+        this.logo.position.y = this.tw_init_vectors[2].x;
+
+        // this.r = 1 - this.scroll * 12 + 0.25;
+        // this.g = ( this.scroll * 12 + 0.25 ) / 2;
+        // this.b = 0.5 + ( this.scroll * 12 + 0.25 ) / 2;
+
+        this.logo.traverse ( ( child ) => {
+            if (child instanceof THREE.Mesh) {
+                child.material.color.setRGB (
+                    this.tw_init_vectors[3].x,
+                    this.tw_init_vectors[3].y,
+                    this.tw_init_vectors[3].z
+                );
+            }
+        });
     }
 }
